@@ -1,0 +1,40 @@
+#include <cs50.h>
+#include <stdio.h>
+
+// Prompt user for height while condition is false   
+int getHeight() {
+   int pyramidHeight;
+   do {  
+    printf("Hello! Welcome to the pyramid.\n");
+    printf("Please choose a number between 1-8 (inclusive) to get started!\n");
+    printf("(Input number here) Height:\n");
+    scanf("%d", &pyramidHeight);
+    }
+    while (pyramidHeight < 1 || pyramidHeight > 8); 
+   return pyramidHeight;
+}
+
+// Generate spaces to right align pyramid
+void rightAlign(const int spaces) {
+   for (int i = 0; i < spaces; i++) {
+       printf(" ");
+   }
+}   
+
+// Print hashes to fill in the pyramid blocks
+void buildingBlocks(const int hashes) {
+    for (int i = 0; i < hashes; i++) {
+        printf("#");
+    }
+}
+
+// Configure pyramid alignment and height
+int main(void) {
+   const int pyramidH = getHeight();
+   for (int height = 0; height < pyramidH; height++) { 
+       rightAlign(pyramidH - height - 1);
+       buildingBlocks(height + 1);
+       printf("\n");
+   }
+   return 0;
+}
